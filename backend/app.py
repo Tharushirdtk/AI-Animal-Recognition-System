@@ -9,17 +9,14 @@ import io, json, os
 app = Flask(__name__)
 CORS(app)
 
-# --------------------------------------------------
+
 # Paths (robust & safe)
-# --------------------------------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 MODEL_PATH = os.path.join(BASE_DIR, "animal_model.h5")
 LABELS_PATH = os.path.join(BASE_DIR, "class_labels.json")
 
-# --------------------------------------------------
 # Italian → English label mapping
-# --------------------------------------------------
 LABEL_TRANSLATION = {
     "cane": "dog",
     "gatto": "cat",
@@ -33,17 +30,14 @@ LABEL_TRANSLATION = {
     "ragno": "spider"
 }
 
-# --------------------------------------------------
+
 # Load model
-# --------------------------------------------------
 if not os.path.exists(MODEL_PATH):
     raise FileNotFoundError(f"Model not found at {MODEL_PATH}")
 
 model = load_model(MODEL_PATH)
 
-# --------------------------------------------------
 # Load class labels
-# --------------------------------------------------
 if not os.path.exists(LABELS_PATH):
     raise FileNotFoundError(f"class_labels.json not found at {LABELS_PATH}")
 
@@ -56,9 +50,7 @@ index_to_label = {int(v): k for k, v in class_indices.items()}
 print("✅ Model loaded")
 print("✅ Raw labels:", index_to_label)
 
-# --------------------------------------------------
-# Prediction route
-# --------------------------------------------------
+# predict endpoint
 @app.route("/predict", methods=["POST"])
 def predict():
     if "file" not in request.files:
@@ -101,8 +93,6 @@ def predict():
         }), 500
 
 
-# --------------------------------------------------
-# Run server
-# --------------------------------------------------
+# Run the app
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
