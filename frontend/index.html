@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animal Recognition AI</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>🐾 Animal Recognition AI 🐾</h1>
+    <p>Upload an image of an animal and let our AI identify it!</p>
+  </header>
+  <main>
+    <div class="container">
+      <div class="upload-section">
+        <label for="imageInput" class="upload-label">
+          <span>Choose an Image</span>
+          <input type="file" id="imageInput" accept="image/*" style="display: none;">
+        </label>
+        <div id="imagePreview" class="image-preview"></div>
+        <button id="predictBtn" class="predict-btn">Predict Animal</button>
+      </div>
+      <div class="result-section">
+        <h2>Prediction Result</h2>
+        <div id="prediction" class="prediction-result"></div>
+        <div id="loading" class="loading" style="display: none;">
+          <div class="spinner"></div>
+          <p>Analyzing image...</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>Powered by AI & Machine Learning</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
